@@ -7,18 +7,30 @@
     {% load static %}
     <!-- Bootstrap CSS -->
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+        .btn.btn-outline-dark {
+            padding: 10px 20px;
+            transition: all 0.3s ease; /* Smooth transition for the hover effect */
+        }
+    
+        .btn.btn-outline-dark:hover {
+            transform: scale(1.2); /* Increase the size of the button on hover */
+        }        
+    </style>
+
 </head>
 <body>
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h1 class="mb-0">CIF List</h1>
+            <a href="{% url 'front_page' %}" class="btn btn-outline-dark">Home Page</a>
             <form class="d-flex" id="search-form">
                 <input class="form-control me-2" type="search" id="search-input" placeholder="Search by Field or Field Name" aria-label="Search" style="width: 250px">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-            <a href="{% url 'front_page' %}" class="btn btn-outline-primary ms-3">Home Page</a> <i class="bi bi-house"></i>
         </div>
-    
+    <hr>
     <body>
         <div class="table-responsive">
             <table class="table align-middle">
