@@ -27,7 +27,7 @@ def dep_list(request):
 def depro_list(request):
     query = request.GET.get('q')
     if query:
-        depros = DepositProduct.objects.filter(field__icontains=query) | DepositProduct.objects.filter(descriptiom__icontains=query)
+        depros = DepositProduct.objects.filter(field__icontains=query) | DepositProduct.objects.filter(description__icontains=query)
     else:
         depros = DepositProduct.objects.all()
 
