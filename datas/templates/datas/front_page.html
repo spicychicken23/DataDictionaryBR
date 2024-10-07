@@ -19,7 +19,12 @@
         .btn-group .btn:hover {
             transform: scale(1.2); /* Increase the size of the button on hover */
         }        
-    </style>
+
+        .admin-btn {
+            margin-top: 20px; 
+            margin-right: 20px; 
+        }
+        </style>
 </head>
 <body>
 
@@ -36,6 +41,11 @@
       </div>
  {% endcomment %}
 
+{% comment %} <div class="container" {% endcomment %}
+<div class="d-flex justify-content-end">
+    <a href="{% url 'admin:index'%}" class="btn btn-success admin-btn">Admin Page</a>
+</div>
+{% comment %} </div> {% endcomment %}
     <div class="container">
         <h1>Welcome to BR Digital Data <br> Data Glossary!</h1>
         <p>Which data would you like to view?</p>
