@@ -37,13 +37,14 @@
  {% endcomment %}
 
     <div class="container">
-        <h1>Welcome to BR Data Dictionary!</h1>
-        <p>Which data would you like to go through?</p>
+        <h1>Welcome to BR Digital Data <br> Data Glossary!</h1>
+        <p>Which data would you like to view?</p>
+        {% comment %} <p> Have a browse on the available datas below:</p> {% endcomment %}
         <div class="btn-group">
             <a href="{% url 'dep_list' %}" class="btn btn-outline-dark">Deposits</a>
             <a href="{% url 'depro_list' %}" class="btn btn-outline-dark">Deposit Product</a>
             <a href="{% url 'cif_list' %}" class="btn btn-outline-dark">CIF</a>
-            <a href="{% url 'fin_list' %}" class="btn btn-outline-dark">Financials</a>
+            <a href="{% url 'fin_list' %}" class="btn btn-outline-dark">Financing</a>
             <a href="{% url 'col_list' %}" class="btn btn-outline-dark">Collaterals</a>
         </div>
     </div>

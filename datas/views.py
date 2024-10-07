@@ -12,7 +12,7 @@ def dep_list(request):
     
     query = request.GET.get('q')
     if query:
-        deposits = Deposit.objects.filter(field__icontains=query)
+        deposits = Deposit.objects.filter(field__icontains=query) | Deposit.objects.filter(description__icontains=query)
     else:
         deposits = Deposit.objects.all()
     
@@ -27,7 +27,7 @@ def dep_list(request):
 def depro_list(request):
     query = request.GET.get('q')
     if query:
-        depros = DepositProduct.objects.filter(field__icontains=query)
+        depros = DepositProduct.objects.filter(field__icontains=query) | DepositProduct.objects.filter(descriptiom__icontains=query)
     else:
         depros = DepositProduct.objects.all()
 
@@ -41,7 +41,7 @@ def depro_list(request):
 def cif_list(request):
     query = request.GET.get('q')
     if query:
-        cifs = CIF.objects.filter(field__icontains=query) | CIF.objects.filter(field_name__icontains=query)
+        cifs = CIF.objects.filter(field__icontains=query) | CIF.objects.filter(field_name__icontains=query) | CIF.objects.filter(description__icontains=query)
     else:
         cifs = CIF.objects.all()
 
@@ -55,7 +55,7 @@ def cif_list(request):
 def fin_list(request):
     query = request.GET.get('q')
     if query:
-        fins = Financing.objects.filter(field__icontains=query) | Financing.objects.filter(field_name__icontains=query)
+        fins = Financing.objects.filter(field__icontains=query) | Financing.objects.filter(field_name__icontains=query) | Financing.objects.filter(description__icontains=query)
     else:
         fins = Financing.objects.all()
 
@@ -69,7 +69,7 @@ def fin_list(request):
 def col_list(request):
     query = request.GET.get('q')
     if query:
-        cols = Collateral.objects.filter(field__icontains=query) | Collateral.objects.filter(field_name__icontains=query)
+        cols = Collateral.objects.filter(field__icontains=query) | Collateral.objects.filter(field_name__icontains=query) | Collateral.objects.filter(description__icontains=query)
     else:
         cols = Collateral.objects.all()
 
