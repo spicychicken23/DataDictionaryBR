@@ -1,0 +1,13 @@
+{% for depro in depros %}
+    <tr class="align-middle">
+        <td>{{ depro.field }}</td>
+        <td>{{ depro.description }}</td>
+        <td>{{ depro.table_name }}</td>
+        <td>{{ depro.datatype }}</td>
+        <td>{{ depro.remarks }}</td>
+    </tr>
+{% empty %}
+    <tr>
+        <td colspan="5">No results found.</td>
+    </tr>
+{% endfor %}

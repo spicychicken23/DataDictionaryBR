@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Product List</title>
+    {% load static %}
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="mb-0">Deposit Product List</h1>
+            <form class="d-flex" id="search-form">
+                <input class="form-control me-2" type="search" id="search-input" placeholder="Search by Field" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <a href="{% url 'front_page' %}" class="btn btn-outline-primary ms-3">Home Page</a> <i class="bi bi-house"></i>
+        </div>
+
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr class="align-middle">
+                    <th>Field</th>
+                    <th>Description</th>
+                    <th>Table Name</th>
+                    <th>Datatype</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody id= "depro-table-body">
+                {% for depro in depros %}
+                <tr class="align-middle">
+                    <td>{{ depro.field }}</td>
+                    <td>{{ depro.description }}</td>
+                    <td>{{ depro.table_name }}</td>
+                    <td>{{ depro.datatype }}</td>
+                    <td>{{ depro.remarks }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No results found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchForm = document.querySelector('#search-form');
+        
+            searchForm.addEventListener('submit', function (e) {
+                e.preventDefault();  // Prevent default form submission
+        
+                const searchQuery = document.querySelector('#search-input').value;  // Get the value from the correct input field
+        
+                fetch(`?q=${searchQuery}`, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'  // Indicates AJAX request
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Update the deposit table body with the new HTML
+                    document.getElementById('depro-table-body').innerHTML = data.html;
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% for cif in cifs %}
+    <tr class="align-middle">
+        <td>{{ cif.field }}</td>
+        <td>{{ cif.description }}</td>
+        <td>{{ cif.field_name }}</td>
+        <td>{{ cif.table_name }}</td>
+        <td>{{ cif.datatype }}</td>
+        <td>{{ cif.remarks }}</td>
+    </tr>
+{% empty %}
+    <tr>
+        <td colspan="5">No results found.</td>
+    </tr>
+{% endfor %}

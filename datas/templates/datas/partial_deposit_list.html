@@ -1,0 +1,13 @@
+{% for deposit in deposits %}
+    <tr class="align-middle">
+        <td>{{ deposit.field }}</td>
+        <td>{{ deposit.description }}</td>
+        <td>{{ deposit.table_name }}</td>
+        <td>{{ deposit.datatype }}</td>
+        <td>{{ deposit.remarks }}</td>
+    </tr>
+{% empty %}
+    <tr>
+        <td colspan="5">No results found.</td>
+    </tr>
+{% endfor %}

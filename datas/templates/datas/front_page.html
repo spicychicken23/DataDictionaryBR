@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    {% load static %}
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 100px;
+        }
+        .btn-group {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    {% comment %} <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h6 class="card-title">Deposit Lists</h6>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="{% url 'dep_list' %}" class="btn btn-primary">Deposits</a>
+          <a href="{% url 'depro_list' %}" class="btn btn-secondary">Deposit Product</a>
+          <a href="{% url 'cif_list' %}" class="btn btn-secondary">CIF</a>
+          <a href="{% url 'fin_list' %}" class="btn btn-secondary">Financials</a>
+          <a href="{% url 'col_list' %}" class="btn btn-secondary">Collaterals</a>
+      </div>
+      </div>
+ {% endcomment %}
+
+    <div class="container">
+        <h1>Welcome!</h1>
+        <p>Which data would you like to go through?</p>
+        <div class="btn-group">
+            <a href="{% url 'dep_list' %}" class="btn btn-outline-dark">Deposits</a>
+            <a href="{% url 'depro_list' %}" class="btn btn-outline-dark">Deposit Product</a>
+            <a href="{% url 'cif_list' %}" class="btn btn-outline-dark">CIF</a>
+            <a href="{% url 'fin_list' %}" class="btn btn-outline-dark">Financials</a>
+            <a href="{% url 'col_list' %}" class="btn btn-outline-dark">Collaterals</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

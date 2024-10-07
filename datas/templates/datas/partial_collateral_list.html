@@ -1,0 +1,14 @@
+{% for col in cols %}
+    <tr class="align-middle">
+        <td>{{ col.field }}</td>
+        <td>{{ col.description }}</td>
+        <td>{{ col.field_name }}</td>
+        <td>{{ col.table_name }}</td>
+        <td>{{ col.datatype }}</td>
+        <td>{{ col.remarks }}</td>
+    </tr>
+{% empty %}
+    <tr>
+        <td colspan="5">No results found.</td>
+    </tr>
+{% endfor %}

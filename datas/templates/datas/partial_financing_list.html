@@ -1,0 +1,14 @@
+{% for fin in fins %}
+    <tr class="align-middle">
+        <td>{{ fin.field }}</td>
+        <td>{{ fin.description }}</td>
+        <td>{{ fin.field_name }}</td>
+        <td>{{ fin.table_name }}</td>
+        <td>{{ fin.datatype }}</td>
+        <td>{{ fin.remarks }}</td>
+    </tr>
+{% empty %}
+    <tr>
+        <td colspan="5">No results found.</td>
+    </tr>
+{% endfor %}
