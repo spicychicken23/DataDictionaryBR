@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-7fxn=#qjsktiag78nw@$f7goia5d$+irx6g2i@=ind&b+)_vjh
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'datadictionarybr.onrender.com'
+    'datadictionarybr.onrender.com',
     '127.0.0.1'
 ]
 
