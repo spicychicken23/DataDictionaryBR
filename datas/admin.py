@@ -5,6 +5,11 @@ from django.shortcuts import render
 from django.urls import path
 from django.http import HttpResponseRedirect
 from .forms import CSVUploadForm
+from django import forms
+
+
+class CsvImportForm(forms.Form):
+    csv_upload = forms.FileField(label="Select a CSV file")
 
 class DepositAdmin(admin.ModelAdmin):
     list_display = ('field', 'description', 'table_name', 'datatype', 'remarks')
@@ -135,7 +140,7 @@ def get_urls(self):
     ]
     return custom_urls + urls
 
-change_list_template = "admin/dep_change_list.html"
+# change_list_template = "admin/dep_change_list.html"
 
 # Register your models here.
 
