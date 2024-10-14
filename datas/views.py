@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Deposit, DepositProduct, CIF, Financing, Collateral
+from .models import Deposit, CIF, Financing, Collateral
 from django.http import JsonResponse
 from django.template.loader import render_to_string
+from django.db.models import Q
 # Create your views here.
 
 def front_page(request):
@@ -24,18 +25,18 @@ def dep_list(request):
 
     return render(request, 'datas/dep_list.html', {'deposits': deposits})
 # Deposit Product List View
-def depro_list(request):
-    query = request.GET.get('q')
-    if query:
-        depros = DepositProduct.objects.filter(field__icontains=query) | DepositProduct.objects.filter(description__icontains=query)
-    else:
-        depros = DepositProduct.objects.all()
+# def depro_list(request):
+#     query = request.GET.get('q')
+#     if query:
+#         depros = DepositProduct.objects.filter(field__icontains=query) | DepositProduct.objects.filter(description__icontains=query)
+#     else:
+#         depros = DepositProduct.objects.all()
 
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        html = render_to_string('datas/partial_deposit_product_list.html', {'depros': depros})
-        return JsonResponse({'html': html})
+#     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+#         html = render_to_string('datas/partial_deposit_product_list.html', {'depros': depros})
+#         return JsonResponse({'html': html})
     
-    return render(request, 'datas/depro_list.html', {'depros': depros})
+#     return render(request, 'datas/depro_list.html', {'depros': depros})
 
 # CIF List View
 def cif_list(request):
@@ -80,3 +81,21 @@ def col_list(request):
     return render(request, 'datas/col_list.html', {'cols': cols})
 
 
+def search_view(request):
+    query = request.GET.get('q', '')
+    results=[]
+
+    if query:
+        deposit_matches = Deposit.objects.filter(Q(field__icontains=query) | Q(description__icontains=query))
+        # product_matches = DepositProduct.objects.filter(Q(field__icontains=query) | Q(description__icontains=query))
+        cif_matches = CIF.objects.filter(Q(field__icontains=query) | Q(description__icontains=query))
+        financing_matches = Financing.objects.filter(Q(field__icontains=query) | Q(description__icontains=query))
+        collateral_matches = Collateral.objects.filter(Q(field__icontains=query) | Q(description__icontains=query))
+
+        results.extend([{'data': result, 'model': 'Deposit'} for result in deposit_matches])
+        # results.extend([{'data': result, 'model': 'Deposit Product'} for result in product_matches])
+        results.extend([{'data': result, 'model': 'CIF'} for result in cif_matches])
+        results.extend([{'data': result, 'model': 'Financing'} for result in financing_matches])
+        results.extend([{'data': result, 'model': 'Collateral'} for result in collateral_matches])
+
+    return render(request, 'search_results.html', {'results': results, 'query': query})
