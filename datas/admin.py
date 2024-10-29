@@ -44,7 +44,7 @@ class DepositAdmin(admin.ModelAdmin):
         form = CSVUploadForm()
         return render(request, "admin/csv_upload_form.html", {"form":form})
 
-
+# Combined this into Deposit Model
 # class DepositProductAdmin(admin.ModelAdmin):
 #     list_display = ('field', 'description', 'table_name', 'datatype', 'remarks')
 #     search_fields = ('field', 'description', 'table_name')
